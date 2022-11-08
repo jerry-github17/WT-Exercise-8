@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Exercise 8_1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
+        <title>Exercise 8:1</title>
+                
+        <script>
+            var app = angular.module("myApp", []);
+            app.controller("control1", function ($scope) {
+            $scope.fbtn = function(){
+                var c1 = parseInt($scope.c1_mk);
+                var c2 = parseInt($scope.c2_mk);
+                var c3 = parseInt($scope.c3_mk);
+                var c4 = parseInt($scope.c4_mk);
+                var c5 = parseInt($scope.c5_mk);
+
+                var avgmark=(c1+c2+c3+c4+c5)/5;
+                $scope.view1 =  avgmark;
+                var grade='';
+
+                if(avgmark >= 95){
+                        grade+='S'
+                    }else if(avgmark>=85 & avgmark<95){
+                        grade+='A'
+                    }else if(avgmark>=75 & avgmark<=85){
+                        grade+='B'
+                    }else if(avgmark>=65 & avgmark<=75){
+                        grade+='C'
+                    }else if(avgmark>=50 & avgmark<=65){
+                        grade+='P'
+                    }else if(avgmark < 50){
+                        grade+='F'
+                    }
+
+                    $scope.view2 =  grade;
+            }
+            });
+        </script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="control1">
+        <h1 class="title">My College</h1>
+        <h3 class="subtitle"> Grade Evaluation</h3>
+
+        <div class="form">
+            <form>
+                Student Name:<br> <input type="text" ><br><br>
+                Student Regno:<br> <input type="text" ><br><br>
+                Course 1 Marks:<br> <input type="text" ng-model="c1_mk"><br><br>
+                Course 2 Marks:<br> <input type="text" ng-model="c2_mk"><br><br>
+                Course 3 Marks:<br> <input type="text" ng-model="c3_mk"><br><br>
+                Course 4 Marks:<br> <input type="text" ng-model="c4_mk"><br><br>
+                Course 5 Marks:<br> <input type="text" ng-model="c5_mk"><br><br>
+                
+                
+            </form>
+        </div>
+
+
+     
+
+       <div class="fbtn">
+        <button ng-click='fbtn()' id="fbtn">Find Grade</button> <br>
+       </div>
+
+       <hr>
+
+       <h2 class="restitle"> Grade Details</h2>
+
+
+
+       <div class="box1head">
+
+        <div id='box1head'>Average Marks </div> &nbsp;&nbsp;
+        <div class="box1" ng-bind="view1"></div>
+        
+       </div>
+
+       <br>
+       <div class="box2head">
+        <div id='box2head'> Grade </div> &nbsp;&nbsp;
+        <div class="box2" ng-bind="view2"></div>
+       </div>
+
+
+    </body>
+</html>
